@@ -1,4 +1,4 @@
-package com.flutterflow.fluttersandbox
+package com.catglabs.ffsandbox
 
 import io.flutter.embedding.android.FlutterActivity
 

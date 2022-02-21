@@ -5,6 +5,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 
 import 'schema/users_record.dart';
+import 'schema/menu_category_record.dart';
+import 'schema/menu_item_record.dart';
+import 'schema/modifier_record.dart';
+import 'schema/modifier_category_record.dart';
 import 'schema/serializers.dart';
 
 export 'package:cloud_firestore/cloud_firestore.dart';
@@ -12,6 +16,10 @@ export 'schema/index.dart';
 export 'schema/serializers.dart';
 
 export 'schema/users_record.dart';
+export 'schema/menu_category_record.dart';
+export 'schema/menu_item_record.dart';
+export 'schema/modifier_record.dart';
+export 'schema/modifier_category_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Stream<List<UsersRecord>> queryUsersRecord(
@@ -26,6 +34,70 @@ Future<List<UsersRecord>> queryUsersRecordOnce(
         int limit = -1,
         bool singleRecord = false}) =>
     queryCollectionOnce(UsersRecord.collection, UsersRecord.serializer,
+        queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
+
+/// Functions to query MenuCategoryRecords (as a Stream and as a Future).
+Stream<List<MenuCategoryRecord>> queryMenuCategoryRecord(
+        {Query Function(Query) queryBuilder,
+        int limit = -1,
+        bool singleRecord = false}) =>
+    queryCollection(
+        MenuCategoryRecord.collection, MenuCategoryRecord.serializer,
+        queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
+
+Future<List<MenuCategoryRecord>> queryMenuCategoryRecordOnce(
+        {Query Function(Query) queryBuilder,
+        int limit = -1,
+        bool singleRecord = false}) =>
+    queryCollectionOnce(
+        MenuCategoryRecord.collection, MenuCategoryRecord.serializer,
+        queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
+
+/// Functions to query MenuItemRecords (as a Stream and as a Future).
+Stream<List<MenuItemRecord>> queryMenuItemRecord(
+        {Query Function(Query) queryBuilder,
+        int limit = -1,
+        bool singleRecord = false}) =>
+    queryCollection(MenuItemRecord.collection, MenuItemRecord.serializer,
+        queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
+
+Future<List<MenuItemRecord>> queryMenuItemRecordOnce(
+        {Query Function(Query) queryBuilder,
+        int limit = -1,
+        bool singleRecord = false}) =>
+    queryCollectionOnce(MenuItemRecord.collection, MenuItemRecord.serializer,
+        queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
+
+/// Functions to query ModifierRecords (as a Stream and as a Future).
+Stream<List<ModifierRecord>> queryModifierRecord(
+        {Query Function(Query) queryBuilder,
+        int limit = -1,
+        bool singleRecord = false}) =>
+    queryCollection(ModifierRecord.collection, ModifierRecord.serializer,
+        queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
+
+Future<List<ModifierRecord>> queryModifierRecordOnce(
+        {Query Function(Query) queryBuilder,
+        int limit = -1,
+        bool singleRecord = false}) =>
+    queryCollectionOnce(ModifierRecord.collection, ModifierRecord.serializer,
+        queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
+
+/// Functions to query ModifierCategoryRecords (as a Stream and as a Future).
+Stream<List<ModifierCategoryRecord>> queryModifierCategoryRecord(
+        {Query Function(Query) queryBuilder,
+        int limit = -1,
+        bool singleRecord = false}) =>
+    queryCollection(
+        ModifierCategoryRecord.collection, ModifierCategoryRecord.serializer,
+        queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
+
+Future<List<ModifierCategoryRecord>> queryModifierCategoryRecordOnce(
+        {Query Function(Query) queryBuilder,
+        int limit = -1,
+        bool singleRecord = false}) =>
+    queryCollectionOnce(
+        ModifierCategoryRecord.collection, ModifierCategoryRecord.serializer,
         queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
 
 Stream<List<T>> queryCollection<T>(

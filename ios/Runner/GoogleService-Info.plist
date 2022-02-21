@@ -3,23 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>545679848805-fjc003kiv76p5tc1daotvjajbp36fgoj.apps.googleusercontent.com</string>
+	<string>894562685256-9aakkijmbp5uhr237ejuvqmeqevhubuo.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.545679848805-fjc003kiv76p5tc1daotvjajbp36fgoj</string>
+	<string>com.googleusercontent.apps.894562685256-9aakkijmbp5uhr237ejuvqmeqevhubuo</string>
 	<key>ANDROID_CLIENT_ID</key>
-	<string>545679848805-mvk7snkf7ndhf9a9n4dobm24pt75m6ls.apps.googleusercontent.com</string>
+	<string>894562685256-6o3kdg56b8t6ah09nb93cq23ro787tg7.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAy3rkudXq7WjZ0DAlLhW8V6FLnUM1e2IY</string>
+	<string>AIzaSyAH0mYRN0jZPtJxX8USwQvGgVl6FDWVAjU</string>
 	<key>GCM_SENDER_ID</key>
-	<string>545679848805</string>
+	<string>894562685256</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.flutterflow.fluttersandbox</string>
+	<string>com.catglabs.ffsandbox</string>
 	<key>PROJECT_ID</key>
-	<string>flutter-sandbox-65342</string>
+	<string>flutterflow-sandbox-app</string>
 	<key>STORAGE_BUCKET</key>
-	<string>flutter-sandbox-65342.appspot.com</string>
+	<string>flutterflow-sandbox-app.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -31,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:545679848805:ios:aa972f05ef28a3e8b65d8c</string>
+	<string>1:894562685256:ios:096b93f281b3e810fee37d</string>
 </dict>
 </plist>

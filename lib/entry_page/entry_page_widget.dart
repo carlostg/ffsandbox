@@ -2,7 +2,7 @@ import '../auth/auth_util.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../home_page/home_page_widget.dart';
+import '../main.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -39,7 +39,7 @@ class _EntryPageWidgetState extends State<EntryPageWidget> {
           height: double.infinity,
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: [Color(0xFF3A209B), Color(0xFF110631)],
+              colors: [Color(0xFF004498), Color(0xFF002F6A)],
               stops: [0, 1],
               begin: AlignmentDirectional(0, -1),
               end: AlignmentDirectional(0, 1),
@@ -78,7 +78,7 @@ class _EntryPageWidgetState extends State<EntryPageWidget> {
                                   hintText: 'Username',
                                   enabledBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(
-                                      color: Color(0xFF3C2452),
+                                      color: Color(0xFFFDB826),
                                       width: 2,
                                     ),
                                     borderRadius: const BorderRadius.only(
@@ -88,7 +88,7 @@ class _EntryPageWidgetState extends State<EntryPageWidget> {
                                   ),
                                   focusedBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(
-                                      color: Color(0xFF3C2452),
+                                      color: Color(0xFFFDB826),
                                       width: 2,
                                     ),
                                     borderRadius: const BorderRadius.only(
@@ -134,7 +134,7 @@ class _EntryPageWidgetState extends State<EntryPageWidget> {
                                   hintText: 'Password',
                                   enabledBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(
-                                      color: Color(0xFF3C2452),
+                                      color: Color(0xFFFDB826),
                                       width: 2,
                                     ),
                                     borderRadius: const BorderRadius.only(
@@ -144,7 +144,7 @@ class _EntryPageWidgetState extends State<EntryPageWidget> {
                                   ),
                                   focusedBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(
-                                      color: Color(0xFF3C2452),
+                                      color: Color(0xFFFDB826),
                                       width: 2,
                                     ),
                                     borderRadius: const BorderRadius.only(
@@ -205,7 +205,8 @@ class _EntryPageWidgetState extends State<EntryPageWidget> {
                               await Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => HomePageWidget(),
+                                  builder: (context) =>
+                                      NavBarPage(initialPage: 'home_page'),
                                 ),
                                 (r) => false,
                               );
@@ -222,7 +223,7 @@ class _EntryPageWidgetState extends State<EntryPageWidget> {
                                 fontSize: 15,
                               ),
                               borderSide: BorderSide(
-                                color: Color(0xFF553BBA),
+                                color: Color(0xFF004498),
                                 width: 2,
                               ),
                               borderRadius: 0,
@@ -245,7 +246,8 @@ class _EntryPageWidgetState extends State<EntryPageWidget> {
                                 await Navigator.pushAndRemoveUntil(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => HomePageWidget(),
+                                    builder: (context) =>
+                                        NavBarPage(initialPage: 'home_page'),
                                   ),
                                   (r) => false,
                                 );
@@ -262,7 +264,7 @@ class _EntryPageWidgetState extends State<EntryPageWidget> {
                                   fontSize: 15,
                                 ),
                                 borderSide: BorderSide(
-                                  color: Color(0xFF553BBA),
+                                  color: Color(0xFFFDB826),
                                   width: 2,
                                 ),
                                 borderRadius: 0,
