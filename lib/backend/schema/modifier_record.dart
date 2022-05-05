@@ -39,6 +39,10 @@ abstract class ModifierRecord
   DateTime get createdTime;
 
   @nullable
+  @BuiltValueField(wireName: 'aloha_item_id')
+  int get alohaItemId;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
@@ -47,7 +51,8 @@ abstract class ModifierRecord
     ..descripion = ''
     ..extraPrice = 0.0
     ..image = ''
-    ..position = 0;
+    ..position = 0
+    ..alohaItemId = 0;
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('modifier');
@@ -79,6 +84,7 @@ Map<String, dynamic> createModifierRecordData({
   int position,
   DocumentReference createdBy,
   DateTime createdTime,
+  int alohaItemId,
 }) =>
     serializers.toFirestore(
         ModifierRecord.serializer,
@@ -90,4 +96,5 @@ Map<String, dynamic> createModifierRecordData({
           ..category = category
           ..position = position
           ..createdBy = createdBy
-          ..createdTime = createdTime));
+          ..createdTime = createdTime
+          ..alohaItemId = alohaItemId));

@@ -5,6 +5,7 @@ import 'menu_category_record.dart';
 import 'menu_item_record.dart';
 import 'modifier_record.dart';
 import 'modifier_category_record.dart';
+import 'favorite_item_record.dart';
 
 import 'index.dart';
 
@@ -20,6 +21,7 @@ const kDocumentReferenceField = 'Document__Reference__Field';
   MenuItemRecord,
   ModifierRecord,
   ModifierCategoryRecord,
+  FavoriteItemRecord,
 ])
 final Serializers serializers = (_$serializers.toBuilder()
       ..add(DocumentReferenceSerializer())

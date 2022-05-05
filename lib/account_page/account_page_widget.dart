@@ -1,17 +1,19 @@
+import '../auth/auth_util.dart';
+import '../entry_page/entry_page_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class HomePageWidget extends StatefulWidget {
-  const HomePageWidget({Key key}) : super(key: key);
+class AccountPageWidget extends StatefulWidget {
+  const AccountPageWidget({Key key}) : super(key: key);
 
   @override
-  _HomePageWidgetState createState() => _HomePageWidgetState();
+  _AccountPageWidgetState createState() => _AccountPageWidgetState();
 }
 
-class _HomePageWidgetState extends State<HomePageWidget> {
+class _AccountPageWidgetState extends State<AccountPageWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -34,12 +36,21 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           ),
           child: Column(
             mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Align(
-                alignment: AlignmentDirectional(0, -0.63),
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 100, 0, 0),
+                alignment: AlignmentDirectional(0.06, -0.63),
+                child: InkWell(
+                  onTap: () async {
+                    await signOut();
+                    await Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => EntryPageWidget(),
+                      ),
+                      (r) => false,
+                    );
+                  },
                   child: CachedNetworkImage(
                     imageUrl:
                         'https://static.wixstatic.com/media/633736_f6a267f23f744fabb8a3b64dac95e0ef~mv2.png/v1/fill/w_252,h_210,al_c,q_85,usm_0.66_1.00_0.01/logo-churchs.webp',
@@ -48,6 +59,15 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     fit: BoxFit.contain,
                   ),
                 ),
+              ),
+              Text(
+                'Cuenta',
+                style: FlutterFlowTheme.of(context).title1.override(
+                      fontFamily: 'Poppins',
+                      color: FlutterFlowTheme.of(context).tertiaryColor,
+                      fontSize: 36,
+                      fontWeight: FontWeight.bold,
+                    ),
               ),
             ],
           ),

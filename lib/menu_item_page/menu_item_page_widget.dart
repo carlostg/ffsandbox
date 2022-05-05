@@ -103,6 +103,12 @@ class _MenuItemPageWidgetState extends State<MenuItemPageWidget> {
                                   EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
                               child: InkWell(
                                 onTap: () async {
+                                  setState(() => FFAppState().OrderItemType =
+                                      'Combo Regular');
+                                  setState(() => FFAppState().OrderItemPrice =
+                                      listViewMenuItemRecord.priceComboReg);
+                                  setState(() => FFAppState().OrderItemImage =
+                                      listViewMenuItemRecord.image);
                                   await showModalBottomSheet(
                                     isScrollControlled: true,
                                     backgroundColor: Colors.transparent,
@@ -158,7 +164,7 @@ class _MenuItemPageWidgetState extends State<MenuItemPageWidget> {
                                                 ),
                                                 width: 90,
                                                 height: 90,
-                                                fit: BoxFit.cover,
+                                                fit: BoxFit.contain,
                                               ),
                                             ),
                                           ),

@@ -4,14 +4,14 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class HomePageWidget extends StatefulWidget {
-  const HomePageWidget({Key key}) : super(key: key);
+class CartPageWidget extends StatefulWidget {
+  const CartPageWidget({Key key}) : super(key: key);
 
   @override
-  _HomePageWidgetState createState() => _HomePageWidgetState();
+  _CartPageWidgetState createState() => _CartPageWidgetState();
 }
 
-class _HomePageWidgetState extends State<HomePageWidget> {
+class _CartPageWidgetState extends State<CartPageWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -34,20 +34,26 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           ),
           child: Column(
             mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Align(
-                alignment: AlignmentDirectional(0, -0.63),
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 100, 0, 0),
-                  child: CachedNetworkImage(
-                    imageUrl:
-                        'https://static.wixstatic.com/media/633736_f6a267f23f744fabb8a3b64dac95e0ef~mv2.png/v1/fill/w_252,h_210,al_c,q_85,usm_0.66_1.00_0.01/logo-churchs.webp',
-                    width: 250,
-                    height: 250,
-                    fit: BoxFit.contain,
-                  ),
+                alignment: AlignmentDirectional(0.06, -0.63),
+                child: CachedNetworkImage(
+                  imageUrl:
+                      'https://static.wixstatic.com/media/633736_f6a267f23f744fabb8a3b64dac95e0ef~mv2.png/v1/fill/w_252,h_210,al_c,q_85,usm_0.66_1.00_0.01/logo-churchs.webp',
+                  width: 250,
+                  height: 250,
+                  fit: BoxFit.contain,
                 ),
+              ),
+              Text(
+                'Mi Orden',
+                style: FlutterFlowTheme.of(context).title1.override(
+                      fontFamily: 'Poppins',
+                      color: FlutterFlowTheme.of(context).tertiaryColor,
+                      fontSize: 36,
+                      fontWeight: FontWeight.bold,
+                    ),
               ),
             ],
           ),

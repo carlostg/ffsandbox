@@ -6,16 +6,16 @@ import 'auth/firebase_user_provider.dart';
 import 'auth/auth_util.dart';
 
 import 'flutter_flow/flutter_flow_theme.dart';
+import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/internationalization.dart';
-import 'package:flutter_sandbox/entry_page/entry_page_widget.dart';
-import 'flutter_flow/flutter_flow_theme.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'home_page/home_page_widget.dart';
-import 'order_page/order_page_widget.dart';
+import 'index.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+
+  FFAppState(); // Initialize FFAppState
 
   runApp(MyApp());
 }
@@ -23,7 +23,7 @@ void main() async {
 class MyApp extends StatefulWidget {
   // This widget is the root of your application.
   @override
-  _MyAppState createState() => _MyAppState();
+  State<MyApp> createState() => _MyAppState();
 
   static _MyAppState of(BuildContext context) =>
       context.findAncestorStateOfType<_MyAppState>();
@@ -32,15 +32,12 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   Locale _locale;
   ThemeMode _themeMode = ThemeMode.system;
+
   Stream<FlutterSandboxFirebaseUser> userStream;
   FlutterSandboxFirebaseUser initialUser;
   bool displaySplashImage = true;
-  final authUserSub = authenticatedUserStream.listen((_) {});
 
-  void setLocale(Locale value) => setState(() => _locale = value);
-  void setThemeMode(ThemeMode mode) => setState(() {
-        _themeMode = mode;
-      });
+  final authUserSub = authenticatedUserStream.listen((_) {});
 
   @override
   void initState() {
@@ -48,7 +45,9 @@ class _MyAppState extends State<MyApp> {
     userStream = flutterSandboxFirebaseUserStream()
       ..listen((user) => initialUser ?? setState(() => initialUser = user));
     Future.delayed(
-        Duration(seconds: 1), () => setState(() => displaySplashImage = false));
+      Duration(seconds: 1),
+      () => setState(() => displaySplashImage = false),
+    );
   }
 
   @override
@@ -57,6 +56,11 @@ class _MyAppState extends State<MyApp> {
 
     super.dispose();
   }
+
+  void setLocale(Locale value) => setState(() => _locale = value);
+  void setThemeMode(ThemeMode mode) => setState(() {
+        _themeMode = mode;
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -112,7 +116,10 @@ class _NavBarPageState extends State<NavBarPage> {
   Widget build(BuildContext context) {
     final tabs = {
       'home_page': HomePageWidget(),
+      'favorite_page': FavoritePageWidget(),
       'order_page': OrderPageWidget(),
+      'account_page': AccountPageWidget(),
+      'cart_page': CartPageWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPage);
     return Scaffold(
@@ -120,11 +127,11 @@ class _NavBarPageState extends State<NavBarPage> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
         onTap: (i) => setState(() => _currentPage = tabs.keys.toList()[i]),
-        backgroundColor: Colors.white,
+        backgroundColor: Color(0xFFFBC200),
         selectedItemColor: Color(0xFF3254A4),
         unselectedItemColor: Color(0x8A000000),
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
+        showSelectedLabels: true,
+        showUnselectedLabels: true,
         type: BottomNavigationBarType.fixed,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -132,7 +139,15 @@ class _NavBarPageState extends State<NavBarPage> {
               Icons.house_siding_rounded,
               size: 24,
             ),
-            label: 'Home',
+            label: 'Inicio',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.star_outline_rounded,
+              size: 24,
+            ),
+            label: 'Favoritos',
             tooltip: '',
           ),
           BottomNavigationBarItem(
@@ -140,7 +155,23 @@ class _NavBarPageState extends State<NavBarPage> {
               Icons.fastfood_outlined,
               size: 24,
             ),
-            label: 'Home',
+            label: 'Menú',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.person_outline_rounded,
+              size: 24,
+            ),
+            label: 'Perfil',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.shopping_cart_outlined,
+              size: 24,
+            ),
+            label: 'Mi Orden',
             tooltip: '',
           )
         ],

@@ -35,7 +35,20 @@ abstract class MenuItemRecord
   DateTime get createdTime;
 
   @nullable
-  BuiltList<double> get price;
+  @BuiltValueField(wireName: 'price_single')
+  double get priceSingle;
+
+  @nullable
+  @BuiltValueField(wireName: 'price_combo_reg')
+  double get priceComboReg;
+
+  @nullable
+  @BuiltValueField(wireName: 'price_combo_med')
+  double get priceComboMed;
+
+  @nullable
+  @BuiltValueField(wireName: 'aloha_item_id')
+  int get alohaItemId;
 
   @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
@@ -46,7 +59,10 @@ abstract class MenuItemRecord
     ..description = ''
     ..position = 0
     ..image = ''
-    ..price = ListBuilder();
+    ..priceSingle = 0.0
+    ..priceComboReg = 0.0
+    ..priceComboMed = 0.0
+    ..alohaItemId = 0;
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('menu_item');
@@ -77,6 +93,10 @@ Map<String, dynamic> createMenuItemRecordData({
   String image,
   DocumentReference createdBy,
   DateTime createdTime,
+  double priceSingle,
+  double priceComboReg,
+  double priceComboMed,
+  int alohaItemId,
 }) =>
     serializers.toFirestore(
         MenuItemRecord.serializer,
@@ -88,4 +108,7 @@ Map<String, dynamic> createMenuItemRecordData({
           ..image = image
           ..createdBy = createdBy
           ..createdTime = createdTime
-          ..price = null));
+          ..priceSingle = priceSingle
+          ..priceComboReg = priceComboReg
+          ..priceComboMed = priceComboMed
+          ..alohaItemId = alohaItemId));

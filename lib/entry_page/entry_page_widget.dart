@@ -14,10 +14,10 @@ class EntryPageWidget extends StatefulWidget {
 }
 
 class _EntryPageWidgetState extends State<EntryPageWidget> {
+  final scaffoldKey = GlobalKey<ScaffoldState>();
   TextEditingController emailTextController;
   TextEditingController passwordTextController;
   bool passwordVisibility;
-  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -75,7 +75,7 @@ class _EntryPageWidgetState extends State<EntryPageWidget> {
                                 controller: emailTextController,
                                 obscureText: false,
                                 decoration: InputDecoration(
-                                  hintText: 'Username',
+                                  hintText: 'Usuario',
                                   enabledBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(
                                       color: Color(0xFFFDB826),
@@ -98,7 +98,7 @@ class _EntryPageWidgetState extends State<EntryPageWidget> {
                                   ),
                                 ),
                                 style: GoogleFonts.getFont(
-                                  'Lato',
+                                  'Poppins',
                                   color: FlutterFlowTheme.of(context)
                                       .tertiaryColor,
                                   fontSize: 18,
@@ -131,7 +131,7 @@ class _EntryPageWidgetState extends State<EntryPageWidget> {
                                 controller: passwordTextController,
                                 obscureText: !passwordVisibility,
                                 decoration: InputDecoration(
-                                  hintText: 'Password',
+                                  hintText: 'Contraseña',
                                   enabledBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(
                                       color: Color(0xFFFDB826),
@@ -166,7 +166,7 @@ class _EntryPageWidgetState extends State<EntryPageWidget> {
                                   ),
                                 ),
                                 style: GoogleFonts.getFont(
-                                  'Lato',
+                                  'Poppins',
                                   color: FlutterFlowTheme.of(context)
                                       .tertiaryColor,
                                   fontSize: 18,
@@ -211,15 +211,15 @@ class _EntryPageWidgetState extends State<EntryPageWidget> {
                                 (r) => false,
                               );
                             },
-                            text: 'Sign up',
+                            text: 'Registrarse',
                             options: FFButtonOptions(
                               width: 125,
                               height: 40,
                               color: Color(0x00FFFFFF),
                               textStyle: GoogleFonts.getFont(
-                                'Lato',
+                                'Poppins',
                                 color: Colors.white,
-                                fontWeight: FontWeight.bold,
+                                fontWeight: FontWeight.w600,
                                 fontSize: 15,
                               ),
                               borderSide: BorderSide(
@@ -252,15 +252,15 @@ class _EntryPageWidgetState extends State<EntryPageWidget> {
                                   (r) => false,
                                 );
                               },
-                              text: 'Sign in',
+                              text: 'Iniciar',
                               options: FFButtonOptions(
                                 width: 125,
                                 height: 40,
                                 color: Color(0x00FFFFFF),
                                 textStyle: GoogleFonts.getFont(
-                                  'Lato',
+                                  'Poppins',
                                   color: Colors.white,
-                                  fontWeight: FontWeight.bold,
+                                  fontWeight: FontWeight.w600,
                                   fontSize: 15,
                                 ),
                                 borderSide: BorderSide(
@@ -275,9 +275,9 @@ class _EntryPageWidgetState extends State<EntryPageWidget> {
                       ),
                     ),
                     Text(
-                      'Forgot Password?',
+                      '¿Olvidó contraseña?',
                       style: GoogleFonts.getFont(
-                        'Lato',
+                        'Poppins',
                         color: Color(0xFF676767),
                         fontSize: 16,
                       ),

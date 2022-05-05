@@ -1,7 +1,4 @@
-import '../auth/auth_util.dart';
 import '../backend/backend.dart';
-import '../entry_page/entry_page_widget.dart';
-import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../menu_item_page/menu_item_page_widget.dart';
@@ -26,43 +23,24 @@ class _OrderPageWidgetState extends State<OrderPageWidget> {
       appBar: AppBar(
         backgroundColor: Color(0xFF3254A4),
         automaticallyImplyLeading: false,
-        title: Container(
-          width: 60,
-          height: 60,
-          decoration: BoxDecoration(),
-          child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(4, 4, 4, 4),
-            child: Image.asset(
-              'assets/images/cc_logo.png',
-              width: double.infinity,
-              height: double.infinity,
-              fit: BoxFit.contain,
+        title: Align(
+          alignment: AlignmentDirectional(0, 0.05),
+          child: Container(
+            width: 60,
+            height: 60,
+            decoration: BoxDecoration(),
+            child: Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(4, 4, 4, 4),
+              child: Image.asset(
+                'assets/images/cc_logo.png',
+                width: double.infinity,
+                height: double.infinity,
+                fit: BoxFit.contain,
+              ),
             ),
           ),
         ),
-        actions: [
-          FlutterFlowIconButton(
-            borderColor: Colors.transparent,
-            borderRadius: 30,
-            borderWidth: 1,
-            buttonSize: 60,
-            icon: Icon(
-              Icons.logout,
-              color: FlutterFlowTheme.of(context).tertiaryColor,
-              size: 30,
-            ),
-            onPressed: () async {
-              await signOut();
-              await Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => EntryPageWidget(),
-                ),
-                (r) => false,
-              );
-            },
-          ),
-        ],
+        actions: [],
         centerTitle: true,
         elevation: 0,
       ),
