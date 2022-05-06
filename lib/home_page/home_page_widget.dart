@@ -231,123 +231,111 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           },
                                         );
                                       },
-                                      child: Material(
-                                        color: Colors.transparent,
-                                        elevation: 1,
-                                        shape: RoundedRectangleBorder(
+                                      child: Container(
+                                        width: double.infinity,
+                                        height: 125,
+                                        decoration: BoxDecoration(
+                                          gradient: LinearGradient(
+                                            colors: [
+                                              Color(0x00FFFFFF),
+                                              FlutterFlowTheme.of(context)
+                                                  .tertiaryColor
+                                            ],
+                                            stops: [0.25, 1],
+                                            begin: AlignmentDirectional(-1, 0),
+                                            end: AlignmentDirectional(1, 0),
+                                          ),
                                           borderRadius:
                                               BorderRadius.circular(32),
-                                        ),
-                                        child: Container(
-                                          width: double.infinity,
-                                          height: 125,
-                                          decoration: BoxDecoration(
-                                            gradient: LinearGradient(
-                                              colors: [
-                                                Color(0x00FFFFFF),
-                                                FlutterFlowTheme.of(context)
-                                                    .tertiaryColor
-                                              ],
-                                              stops: [0.25, 1],
-                                              begin:
-                                                  AlignmentDirectional(-1, 0),
-                                              end: AlignmentDirectional(1, 0),
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(32),
-                                            border: Border.all(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .tertiaryColor,
-                                              width: 1,
-                                            ),
+                                          border: Border.all(
+                                            color: FlutterFlowTheme.of(context)
+                                                .tertiaryColor,
+                                            width: 1,
                                           ),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(0, 0, 8, 0),
-                                                child: Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
-                                                  children: [
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(0, 10,
-                                                                  10, 10),
-                                                      child: Hero(
-                                                        tag: valueOrDefault<
-                                                            String>(
+                                        ),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 0, 8, 0),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                0, 10, 10, 10),
+                                                    child: Hero(
+                                                      tag: valueOrDefault<
+                                                          String>(
+                                                        listViewMenuItemRecord
+                                                            .image,
+                                                        'https://firebasestorage.googleapis.com/v0/b/flutterflow-sandbox-app.appspot.com/o/assets%2Fimages%2Fplaceholder-image.png?alt=media&token=889fc87a-1c59-4c50-b509-14e7de33f43a' +
+                                                            '$listViewIndex',
+                                                      ),
+                                                      transitionOnUserGestures:
+                                                          true,
+                                                      child: CachedNetworkImage(
+                                                        imageUrl:
+                                                            valueOrDefault<
+                                                                String>(
                                                           listViewMenuItemRecord
                                                               .image,
-                                                          'https://firebasestorage.googleapis.com/v0/b/flutterflow-sandbox-app.appspot.com/o/assets%2Fimages%2Fplaceholder-image.png?alt=media&token=889fc87a-1c59-4c50-b509-14e7de33f43a' +
-                                                              '$listViewIndex',
+                                                          'https://firebasestorage.googleapis.com/v0/b/flutterflow-sandbox-app.appspot.com/o/assets%2Fimages%2Fplaceholder-image.png?alt=media&token=889fc87a-1c59-4c50-b509-14e7de33f43a',
                                                         ),
-                                                        transitionOnUserGestures:
-                                                            true,
-                                                        child:
-                                                            CachedNetworkImage(
-                                                          imageUrl:
-                                                              valueOrDefault<
-                                                                  String>(
-                                                            listViewMenuItemRecord
-                                                                .image,
-                                                            'https://firebasestorage.googleapis.com/v0/b/flutterflow-sandbox-app.appspot.com/o/assets%2Fimages%2Fplaceholder-image.png?alt=media&token=889fc87a-1c59-4c50-b509-14e7de33f43a',
-                                                          ),
-                                                          width: 90,
-                                                          height: 90,
-                                                          fit: BoxFit.contain,
-                                                        ),
+                                                        width: 90,
+                                                        height: 90,
+                                                        fit: BoxFit.contain,
                                                       ),
                                                     ),
-                                                    Expanded(
-                                                      child: Column(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .start,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Text(
-                                                            listViewMenuItemRecord
-                                                                .name,
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .subtitle1
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Lexend Deca',
-                                                                  color: Color(
-                                                                      0xFF090F13),
-                                                                  fontSize: 16,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                ),
-                                                          ),
-                                                        ],
-                                                      ),
+                                                  ),
+                                                  Expanded(
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .start,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Text(
+                                                          listViewMenuItemRecord
+                                                              .name,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .subtitle1
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Lexend Deca',
+                                                                color: Color(
+                                                                    0xFF090F13),
+                                                                fontSize: 16,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
+                                                              ),
+                                                        ),
+                                                      ],
                                                     ),
-                                                    Icon(
-                                                      Icons
-                                                          .keyboard_arrow_right_rounded,
-                                                      color: Color(0xFF57636C),
-                                                      size: 32,
-                                                    ),
-                                                  ],
-                                                ),
+                                                  ),
+                                                  Icon(
+                                                    Icons
+                                                        .keyboard_arrow_right_rounded,
+                                                    color: Color(0xFF57636C),
+                                                    size: 32,
+                                                  ),
+                                                ],
                                               ),
-                                            ],
-                                          ),
+                                            ),
+                                          ],
                                         ),
                                       ),
                                     ),
