@@ -61,7 +61,7 @@ class _AccountPageWidgetState extends State<AccountPageWidget> {
                 ),
               ),
               Text(
-                'Cuenta',
+                'Perfil',
                 style: FlutterFlowTheme.of(context).title1.override(
                       fontFamily: 'Poppins',
                       color: FlutterFlowTheme.of(context).tertiaryColor,

@@ -117,9 +117,8 @@ class _NavBarPageState extends State<NavBarPage> {
     final tabs = {
       'home_page': HomePageWidget(),
       'favorite_page': FavoritePageWidget(),
-      'order_page': OrderPageWidget(),
-      'account_page': AccountPageWidget(),
       'cart_page': CartPageWidget(),
+      'account_page': AccountPageWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPage);
     return Scaffold(
@@ -136,7 +135,7 @@ class _NavBarPageState extends State<NavBarPage> {
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.house_siding_rounded,
+              Icons.fastfood_outlined,
               size: 24,
             ),
             label: 'Inicio',
@@ -152,10 +151,10 @@ class _NavBarPageState extends State<NavBarPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.fastfood_outlined,
+              Icons.shopping_cart_outlined,
               size: 24,
             ),
-            label: 'Menú',
+            label: 'Mi Orden',
             tooltip: '',
           ),
           BottomNavigationBarItem(
@@ -164,14 +163,6 @@ class _NavBarPageState extends State<NavBarPage> {
               size: 24,
             ),
             label: 'Perfil',
-            tooltip: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.shopping_cart_outlined,
-              size: 24,
-            ),
-            label: 'Mi Orden',
             tooltip: '',
           )
         ],
