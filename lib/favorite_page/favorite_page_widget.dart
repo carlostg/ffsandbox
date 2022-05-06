@@ -44,7 +44,7 @@ class _FavoritePageWidgetState extends State<FavoritePageWidget> {
         centerTitle: true,
         elevation: 0,
       ),
-      backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
+      backgroundColor: Color(0xFFF5F5F5),
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         child: Column(

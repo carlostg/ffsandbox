@@ -23,16 +23,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
+      backgroundColor: Color(0xFFF5F5F5),
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
           child: Container(
             width: double.infinity,
             height: double.infinity,
-            decoration: BoxDecoration(
-              color: FlutterFlowTheme.of(context).tertiaryColor,
-            ),
+            decoration: BoxDecoration(),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -68,9 +66,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     return Container(
                       width: double.infinity,
                       height: MediaQuery.of(context).size.height * 0.08,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).tertiaryColor,
-                      ),
+                      decoration: BoxDecoration(),
                       child: SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         child: Row(
@@ -103,6 +99,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       ),
                                   iconColor: Colors.white,
                                   iconSize: 18,
+                                  labelPadding: EdgeInsetsDirectional.fromSTEB(
+                                      8, 8, 8, 8),
                                   elevation: 4,
                                 ),
                                 unselectedChipStyle: ChipStyle(
@@ -115,6 +113,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       ),
                                   iconColor: Color(0xFF323B45),
                                   iconSize: 18,
+                                  labelPadding: EdgeInsetsDirectional.fromSTEB(
+                                      8, 8, 8, 8),
                                   elevation: 4,
                                 ),
                                 chipSpacing: 16,
@@ -162,9 +162,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       return Container(
                         width: double.infinity,
                         height: double.infinity,
-                        decoration: BoxDecoration(
-                          color: FlutterFlowTheme.of(context).tertiaryColor,
-                        ),
+                        decoration: BoxDecoration(),
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
                           child: StreamBuilder<List<MenuItemRecord>>(
@@ -199,7 +197,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       listViewMenuItemRecordList[listViewIndex];
                                   return Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        24, 0, 24, 0),
+                                        24, 0, 24, 16),
                                     child: InkWell(
                                       onTap: () async {
                                         setState(() => FFAppState()
@@ -235,8 +233,26 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       },
                                       child: Container(
                                         width: double.infinity,
-                                        height: 111,
-                                        decoration: BoxDecoration(),
+                                        height: 115,
+                                        decoration: BoxDecoration(
+                                          gradient: LinearGradient(
+                                            colors: [
+                                              Color(0x00FFFFFF),
+                                              FlutterFlowTheme.of(context)
+                                                  .tertiaryColor
+                                            ],
+                                            stops: [0.25, 1],
+                                            begin: AlignmentDirectional(-1, 0),
+                                            end: AlignmentDirectional(1, 0),
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(32),
+                                          border: Border.all(
+                                            color: FlutterFlowTheme.of(context)
+                                                .tertiaryColor,
+                                            width: 1,
+                                          ),
+                                        ),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:
@@ -309,13 +325,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                   size: 24,
                                                 ),
                                               ],
-                                            ),
-                                            Container(
-                                              width: double.infinity,
-                                              height: 1,
-                                              decoration: BoxDecoration(
-                                                color: Color(0x40303030),
-                                              ),
                                             ),
                                           ],
                                         ),
