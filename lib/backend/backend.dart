@@ -10,6 +10,7 @@ import 'schema/menu_item_record.dart';
 import 'schema/modifier_record.dart';
 import 'schema/modifier_category_record.dart';
 import 'schema/favorite_item_record.dart';
+import 'schema/banner_image_record.dart';
 import 'schema/serializers.dart';
 
 export 'dart:async' show StreamSubscription;
@@ -23,6 +24,7 @@ export 'schema/menu_item_record.dart';
 export 'schema/modifier_record.dart';
 export 'schema/modifier_category_record.dart';
 export 'schema/favorite_item_record.dart';
+export 'schema/banner_image_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Stream<List<UsersRecord>> queryUsersRecord(
@@ -205,6 +207,37 @@ Future<FFFirestorePage<FavoriteItemRecord>> queryFavoriteItemRecordPage({
     queryCollectionPage(
       FavoriteItemRecord.collection,
       FavoriteItemRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
+
+/// Functions to query BannerImageRecords (as a Stream and as a Future).
+Stream<List<BannerImageRecord>> queryBannerImageRecord(
+        {Query Function(Query) queryBuilder,
+        int limit = -1,
+        bool singleRecord = false}) =>
+    queryCollection(BannerImageRecord.collection, BannerImageRecord.serializer,
+        queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
+
+Future<List<BannerImageRecord>> queryBannerImageRecordOnce(
+        {Query Function(Query) queryBuilder,
+        int limit = -1,
+        bool singleRecord = false}) =>
+    queryCollectionOnce(
+        BannerImageRecord.collection, BannerImageRecord.serializer,
+        queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
+
+Future<FFFirestorePage<BannerImageRecord>> queryBannerImageRecordPage({
+  Query Function(Query) queryBuilder,
+  DocumentSnapshot nextPageMarker,
+  int pageSize,
+  bool isStream,
+}) =>
+    queryCollectionPage(
+      BannerImageRecord.collection,
+      BannerImageRecord.serializer,
       queryBuilder: queryBuilder,
       nextPageMarker: nextPageMarker,
       pageSize: pageSize,
