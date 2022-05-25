@@ -15,10 +15,10 @@ class EntryPageWidget extends StatefulWidget {
 }
 
 class _EntryPageWidgetState extends State<EntryPageWidget> {
-  final scaffoldKey = GlobalKey<ScaffoldState>();
   TextEditingController emailTextController;
   TextEditingController passwordTextController;
   bool passwordVisibility;
+  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {

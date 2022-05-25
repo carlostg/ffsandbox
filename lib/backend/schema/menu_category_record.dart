@@ -36,6 +36,14 @@ abstract class MenuCategoryRecord
   DateTime get createdTime;
 
   @nullable
+  @BuiltValueField(wireName: 'updated_time')
+  DateTime get updatedTime;
+
+  @nullable
+  @BuiltValueField(wireName: 'menu_items')
+  BuiltList<DocumentReference> get menuItems;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
@@ -44,7 +52,8 @@ abstract class MenuCategoryRecord
     ..description = ''
     ..image = ''
     ..position = 0
-    ..isVisible = false;
+    ..isVisible = false
+    ..menuItems = ListBuilder();
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('menu_category');
@@ -76,6 +85,7 @@ Map<String, dynamic> createMenuCategoryRecordData({
   bool isVisible,
   DocumentReference createdBy,
   DateTime createdTime,
+  DateTime updatedTime,
 }) =>
     serializers.toFirestore(
         MenuCategoryRecord.serializer,
@@ -86,4 +96,6 @@ Map<String, dynamic> createMenuCategoryRecordData({
           ..position = position
           ..isVisible = isVisible
           ..createdBy = createdBy
-          ..createdTime = createdTime));
+          ..createdTime = createdTime
+          ..updatedTime = updatedTime
+          ..menuItems = null));

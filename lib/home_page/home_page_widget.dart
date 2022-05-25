@@ -86,7 +86,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           );
                         }
                         List<MenuCategoryRecord>
-                            containerMenuCategoryRecordList = snapshot.data;
+                            containerChoiceChipsMenuCategoryRecordList =
+                            snapshot.data;
                         return Container(
                           width: double.infinity,
                           height: MediaQuery.of(context).size.height * 0.08,
@@ -103,12 +104,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     initiallySelected: choiceChipsValue != null
                                         ? [choiceChipsValue]
                                         : ['Nuevo'],
-                                    options: (containerMenuCategoryRecordList
-                                                .map((e) => e.name)
-                                                .toList() ??
-                                            [])
-                                        .map((label) => ChipData(label))
-                                        .toList(),
+                                    options:
+                                        (containerChoiceChipsMenuCategoryRecordList
+                                                    .map((e) => e.name)
+                                                    .toList() ??
+                                                [])
+                                            .map((label) => ChipData(label))
+                                            .toList(),
                                     onChanged: (val) => setState(
                                         () => choiceChipsValue = val.first),
                                     selectedChipStyle: ChipStyle(
@@ -178,218 +180,250 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             );
                           }
                           List<MenuCategoryRecord>
-                              containerMenuCategoryRecordList = snapshot.data;
+                              containerListViewMenuCategoryRecordList =
+                              snapshot.data;
                           // Return an empty Container when the document does not exist.
                           if (snapshot.data.isEmpty) {
                             return Container();
                           }
-                          final containerMenuCategoryRecord =
-                              containerMenuCategoryRecordList.isNotEmpty
-                                  ? containerMenuCategoryRecordList.first
+                          final containerListViewMenuCategoryRecord =
+                              containerListViewMenuCategoryRecordList.isNotEmpty
+                                  ? containerListViewMenuCategoryRecordList
+                                      .first
                                   : null;
                           return Container(
                             width: double.infinity,
                             height: double.infinity,
                             decoration: BoxDecoration(),
-                            child: Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                              child: StreamBuilder<List<MenuItemRecord>>(
-                                stream: queryMenuItemRecord(
-                                  queryBuilder: (menuItemRecord) =>
-                                      menuItemRecord
-                                          .where('category',
-                                              isEqualTo:
-                                                  containerMenuCategoryRecord
-                                                      .reference)
-                                          .orderBy('position'),
-                                ),
-                                builder: (context, snapshot) {
-                                  // Customize what your widget looks like when it's loading.
-                                  if (!snapshot.hasData) {
-                                    return Center(
-                                      child: SizedBox(
-                                        width: 50,
-                                        height: 50,
-                                        child: CircularProgressIndicator(
-                                          color: Color(0xFF3254A4),
-                                        ),
-                                      ),
-                                    );
-                                  }
-                                  List<MenuItemRecord>
-                                      listViewMenuItemRecordList =
-                                      snapshot.data;
-                                  return ListView.builder(
-                                    padding: EdgeInsets.zero,
-                                    scrollDirection: Axis.vertical,
-                                    itemCount:
-                                        listViewMenuItemRecordList.length,
-                                    itemBuilder: (context, listViewIndex) {
-                                      final listViewMenuItemRecord =
-                                          listViewMenuItemRecordList[
-                                              listViewIndex];
-                                      return Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            24, 0, 24, 16),
-                                        child: InkWell(
-                                          onTap: () async {
-                                            setState(() =>
-                                                FFAppState().OrderItemType =
-                                                    'Combo Regular');
-                                            setState(() =>
-                                                FFAppState().OrderItemPrice =
-                                                    listViewMenuItemRecord
-                                                        .priceSingle);
-                                            setState(() => FFAppState()
-                                                    .OrderItemImage =
-                                                listViewMenuItemRecord.image);
-                                            await showModalBottomSheet(
-                                              isScrollControlled: true,
-                                              backgroundColor:
-                                                  Colors.transparent,
-                                              context: context,
-                                              builder: (context) {
-                                                return Padding(
-                                                  padding:
-                                                      MediaQuery.of(context)
-                                                          .viewInsets,
-                                                  child: Container(
-                                                    height:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .height *
-                                                            0.95,
-                                                    child: OrderItemPageWidget(
-                                                      menuItem:
-                                                          listViewMenuItemRecord
-                                                              .reference,
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 8, 0, 0),
+                                    child: Builder(
+                                      builder: (context) {
+                                        final varMenuitemList =
+                                            containerListViewMenuCategoryRecord
+                                                    .menuItems
+                                                    .toList()
+                                                    ?.toList() ??
+                                                [];
+                                        return ListView.builder(
+                                          padding: EdgeInsets.zero,
+                                          scrollDirection: Axis.vertical,
+                                          itemCount: varMenuitemList.length,
+                                          itemBuilder:
+                                              (context, varMenuitemListIndex) {
+                                            final varMenuitemListItem =
+                                                varMenuitemList[
+                                                    varMenuitemListIndex];
+                                            return Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(24, 0, 24, 16),
+                                              child:
+                                                  StreamBuilder<MenuItemRecord>(
+                                                stream:
+                                                    MenuItemRecord.getDocument(
+                                                        varMenuitemListItem),
+                                                builder: (context, snapshot) {
+                                                  // Customize what your widget looks like when it's loading.
+                                                  if (!snapshot.hasData) {
+                                                    return Center(
+                                                      child: SizedBox(
+                                                        width: 50,
+                                                        height: 50,
+                                                        child:
+                                                            CircularProgressIndicator(
+                                                          color:
+                                                              Color(0xFF3254A4),
+                                                        ),
+                                                      ),
+                                                    );
+                                                  }
+                                                  final listViewCellMenuItemRecord =
+                                                      snapshot.data;
+                                                  return InkWell(
+                                                    onTap: () async {
+                                                      setState(() => FFAppState()
+                                                              .OrderItemType =
+                                                          'Combo Regular');
+                                                      setState(() => FFAppState()
+                                                              .OrderItemPrice =
+                                                          listViewCellMenuItemRecord
+                                                              .priceComboReg);
+                                                      setState(() => FFAppState()
+                                                              .OrderItemImage =
+                                                          listViewCellMenuItemRecord
+                                                              .image);
+                                                      await showModalBottomSheet(
+                                                        isScrollControlled:
+                                                            true,
+                                                        backgroundColor:
+                                                            Colors.transparent,
+                                                        context: context,
+                                                        builder: (context) {
+                                                          return Padding(
+                                                            padding:
+                                                                MediaQuery.of(
+                                                                        context)
+                                                                    .viewInsets,
+                                                            child: Container(
+                                                              height: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .height *
+                                                                  0.95,
+                                                              child:
+                                                                  OrderItemPageWidget(
+                                                                menuItem:
+                                                                    listViewCellMenuItemRecord
+                                                                        .reference,
+                                                              ),
+                                                            ),
+                                                          );
+                                                        },
+                                                      );
+                                                    },
+                                                    child: Container(
+                                                      width: double.infinity,
+                                                      height: 125,
+                                                      decoration: BoxDecoration(
+                                                        gradient:
+                                                            LinearGradient(
+                                                          colors: [
+                                                            Color(0x00FFFFFF),
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .tertiaryColor
+                                                          ],
+                                                          stops: [0.25, 1],
+                                                          begin:
+                                                              AlignmentDirectional(
+                                                                  -1, 0),
+                                                          end:
+                                                              AlignmentDirectional(
+                                                                  1, 0),
+                                                        ),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(32),
+                                                        border: Border.all(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .tertiaryColor,
+                                                          width: 1,
+                                                        ),
+                                                      ),
+                                                      child: Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0,
+                                                                        0,
+                                                                        8,
+                                                                        0),
+                                                            child: Row(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .center,
+                                                              children: [
+                                                                Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0,
+                                                                          10,
+                                                                          10,
+                                                                          10),
+                                                                  child: Hero(
+                                                                    tag: valueOrDefault<
+                                                                        String>(
+                                                                      listViewCellMenuItemRecord
+                                                                          .image,
+                                                                      'https://firebasestorage.googleapis.com/v0/b/flutterflow-sandbox-app.appspot.com/o/assets%2Fimages%2Fplaceholder-image.png?alt=media&token=889fc87a-1c59-4c50-b509-14e7de33f43a' +
+                                                                          '$varMenuitemListIndex',
+                                                                    ),
+                                                                    transitionOnUserGestures:
+                                                                        true,
+                                                                    child:
+                                                                        CachedNetworkImage(
+                                                                      imageUrl:
+                                                                          valueOrDefault<
+                                                                              String>(
+                                                                        listViewCellMenuItemRecord
+                                                                            .image,
+                                                                        'https://firebasestorage.googleapis.com/v0/b/flutterflow-sandbox-app.appspot.com/o/assets%2Fimages%2Fplaceholder-image.png?alt=media&token=889fc87a-1c59-4c50-b509-14e7de33f43a',
+                                                                      ),
+                                                                      width: 90,
+                                                                      height:
+                                                                          90,
+                                                                      fit: BoxFit
+                                                                          .contain,
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                                Expanded(
+                                                                  child: Column(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .start,
+                                                                    crossAxisAlignment:
+                                                                        CrossAxisAlignment
+                                                                            .start,
+                                                                    children: [
+                                                                      Text(
+                                                                        listViewCellMenuItemRecord
+                                                                            .name,
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .subtitle1
+                                                                            .override(
+                                                                              fontFamily: 'Lexend Deca',
+                                                                              color: Color(0xFF090F13),
+                                                                              fontSize: 16,
+                                                                              fontWeight: FontWeight.w500,
+                                                                            ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                                Icon(
+                                                                  Icons
+                                                                      .keyboard_arrow_right_rounded,
+                                                                  color: Color(
+                                                                      0xFF57636C),
+                                                                  size: 32,
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
                                                     ),
-                                                  ),
-                                                );
-                                              },
+                                                  );
+                                                },
+                                              ),
                                             );
                                           },
-                                          child: Container(
-                                            width: double.infinity,
-                                            height: 125,
-                                            decoration: BoxDecoration(
-                                              gradient: LinearGradient(
-                                                colors: [
-                                                  Color(0x00FFFFFF),
-                                                  FlutterFlowTheme.of(context)
-                                                      .tertiaryColor
-                                                ],
-                                                stops: [0.25, 1],
-                                                begin:
-                                                    AlignmentDirectional(-1, 0),
-                                                end: AlignmentDirectional(1, 0),
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(32),
-                                              border: Border.all(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .tertiaryColor,
-                                                width: 1,
-                                              ),
-                                            ),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(0, 0, 8, 0),
-                                                  child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(0, 10,
-                                                                    10, 10),
-                                                        child: Hero(
-                                                          tag: valueOrDefault<
-                                                              String>(
-                                                            listViewMenuItemRecord
-                                                                .image,
-                                                            'https://firebasestorage.googleapis.com/v0/b/flutterflow-sandbox-app.appspot.com/o/assets%2Fimages%2Fplaceholder-image.png?alt=media&token=889fc87a-1c59-4c50-b509-14e7de33f43a' +
-                                                                '$listViewIndex',
-                                                          ),
-                                                          transitionOnUserGestures:
-                                                              true,
-                                                          child:
-                                                              CachedNetworkImage(
-                                                            imageUrl:
-                                                                valueOrDefault<
-                                                                    String>(
-                                                              listViewMenuItemRecord
-                                                                  .image,
-                                                              'https://firebasestorage.googleapis.com/v0/b/flutterflow-sandbox-app.appspot.com/o/assets%2Fimages%2Fplaceholder-image.png?alt=media&token=889fc87a-1c59-4c50-b509-14e7de33f43a',
-                                                            ),
-                                                            width: 90,
-                                                            height: 90,
-                                                            fit: BoxFit.contain,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      Expanded(
-                                                        child: Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .start,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Text(
-                                                              listViewMenuItemRecord
-                                                                  .name,
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .subtitle1
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Lexend Deca',
-                                                                    color: Color(
-                                                                        0xFF090F13),
-                                                                    fontSize:
-                                                                        16,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w500,
-                                                                  ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                      Icon(
-                                                        Icons
-                                                            .keyboard_arrow_right_rounded,
-                                                        color:
-                                                            Color(0xFF57636C),
-                                                        size: 32,
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                  );
-                                },
-                              ),
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           );
                         },
